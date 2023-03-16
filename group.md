@@ -6,7 +6,7 @@
 - **Niner Net ID:** agonza79
 - **Role:** Developer/Graphic Designer
 
-## John Doe
+## Zileyah Onafowora 
 
 - **Github Username:** Zeeo07
 - **Niner Net ID:** zonafowo
