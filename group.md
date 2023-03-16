@@ -8,8 +8,8 @@
 
 ## John Doe
 
-- **Github Username:** jdoe1
-- **Niner Net ID:** jdoe1
+- **Github Username:** Zeeo07
+- **Niner Net ID:** zonafowo
 - **Role:** Developer
 
 ## Tim H
