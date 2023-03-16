@@ -1,9 +1,10 @@
 # Group Members
 
-## Jane Doe
+## Alex Gonzalez
 
-- **Github Username:** jdoe
-- **Niner Net ID:** jdoe
+- **Github Username:** Nasnency
+- **Niner Net ID:** agonza79
+- **Role:** Developer/Graphic Designer
 
 ## John Doe
 
