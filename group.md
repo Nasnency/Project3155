@@ -17,7 +17,3 @@
 - **Github Username:** electric-sun-20
 - **Niner Net ID:** theideck
 
-## Greg T
-
-- **Github Username:** vvile-film-archives
-- **Niner Net ID:** gturk
