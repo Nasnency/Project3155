@@ -4,13 +4,11 @@
 
 - **Github Username:** Nasnency
 - **Niner Net ID:** agonza79
-- **Role:** Developer/Graphic Designer
 
 ## Zileyah Onafowora 
 
 - **Github Username:** Zeeo07
 - **Niner Net ID:** zonafowo
-- **Role:** Developer
 
 ## Tim H
 
