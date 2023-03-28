@@ -31,7 +31,7 @@ When a change is made to the document, a new revision should be created. The rev
 
 ## Introduction
 
-The site we plan to make is a webcomic-viewing page. We plan to make an interactive design that allows users to not just passively read, but actively join in on the experience with comments and voting features. This will allow the artist to share their work and get feedback on it, while allowing readers to form a community around the project. 
+The site we plan to make is a webcomic-viewing page. We plan to make an interactive design that allows users to not just passively read, but actively join in on the experience with comments and bookmarking features. This will allow the artist to share their work and get feedback on it, while allowing readers to form a community around the project. 
 
 ## Requirements
 
