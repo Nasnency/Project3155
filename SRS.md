@@ -18,6 +18,7 @@ When a change is made to the document, a new revision should be created. The rev
 | Version | Date | Description | Author | Reviewed By |
 | --- | --- | --- | --- | --- |
 | 1.0 | 03/22/23 | Initial draft | [David Gary](mailto:dgary9@uncc.edu) | [David Gary](mailto:dgary@uncc.edu) |
+| 1.1 | 03/27/23 | Initial draft | [Alex Gonzalez](mailto:agonza79@uncc.edu) | [Alex Gonzalez](mailto:agonza79@uncc.edu) |
 
 ## Table of Contents
 
@@ -30,50 +31,68 @@ When a change is made to the document, a new revision should be created. The rev
 
 ## Introduction
 
-In this section, you should give a brief overview of what your project will be. Describe the software system you are building and what problems it solves. You should also give a short description of the stakeholders (users of the system) and what their needs are. There is no set formatting requirement, but you should maintain a consistent structure across future sections. Not all members must contribute to this section.
+The site we plan to make is a webcomic-viewing page. We plan to make an interactive design that allows users to not just passively read, but actively join in on the experience with comments and voting features. This will allow the artist to share their work and get feedback on it, while allowing readers to form a community around the project. 
 
 ## Requirements
 
 Each group member must supply at least three functional requirements for the project. Each requirement should be written in the following format:
 
-* **ID:** A unique identifier for the requirement. This should be a number that is unique across the entire document (something like REQ-1, REQ-2, etc. but be sure to replace the word `ID` with the unique identifier).
-  * **Description:** A short description of the requirement. This should be a single sentence that describes the requirement. Do not replace the word `Description` with the actual description. Put the description in the space where these instructions are written. Maintain that practice for all future sections.
-  * **Type:** The type of requirement. Should be either `Functional` or `Non-Functional`.
-  * **Priority:** The priority of the requirement. This should be a number between 1 and 5, with 1 being the highest priority and 5 being the lowest priority.
-  * **Rationale:** A short description of why the requirement is important. This should be a single sentence that describes why the requirement is important.
-  * **Testing:** A short description of how the requirement can be tested. This should be a single sentence that describes how the requirement can be tested.
-* **ID:** A unique identifier for the requirement. This should be a number that is unique across the entire document (something like REQ-1, REQ-2, etc. but be sure to replace the word `ID` with the unique identifier).
-  * **Description:** A short description of the requirement. This should be a single sentence that describes the requirement.
-  * **Type:** The type of requirement. Should be either `Functional` or `Non-Functional`.
-  * **Priority:** The priority of the requirement. This should be a number between 1 and 5, with 1 being the highest priority and 5 being the lowest priority.
-  * **Rationale:** A short description of why the requirement is important. This should be a single sentence that describes why the requirement is important.
-  * **Testing:** A short description of how the requirement can be tested. This should be a single sentence that describes how the requirement can be tested.
+* **REQ 1.1.1:**
+  * **Description:** The artist should be able to log in to a private page that readers cannot access, from which they can control their webcomic.
+  * **Type:** `Functional`
+  * **Priority:** 1
+  * **Rationale:** The artist being able to control their content, and the readers not being able to manipulate it maliciously, is the central focus of the site.
+  * **Testing:** The artist should input their credentials at a login page and verify that it redirects them to the control page; readers should be blocked or redirected if they attempt to do so.
+* **REQ 1.1.2:** 
+  * **Description:** A user should be able to leave a comment on the comic, which will then become visible to other users when they refresh the page.
+  * **Type:** `Functional`
+  * **Priority:** 3
+  * **Rationale:** User engagement is a core part of the design and experience of the site, and allows the artist to receive feedback, as well.
+  * **Testing:** A user should write and submit a comment; a separate user, upon refreshing the page, should be able to view the comment. 
+* **REQ 1.1.3:** 
+  * **Description:** The artist should be able to remove comments from the control page.
+  * **Type:** `Functional`
+  * **Priority:** 3
+  * **Rationale:** Just as it is important for users to leave comments, it should be important for artists to curate them, to prevent content they disagree with from being visible and associated with their work.
+  * **Testing:** The artist should log into the control page and remove a pre-existing comment, which should vanish upon refresh for all users.
 
 ## Constraints
 
-In this section, you should list any constraints that you have for the project. Each group member must supply at least two constraints. These can be constraints on the project itself, the software system, or the stakeholders. Constraints can be anything that limits the scope of the project. For example, that this project's template code is written using Flask and Python constitutes a constraint on the backend of the project. Constraints can also be things like the required timeline of the project. Be creative.
+The project should preload the comic and comments, instead of loading them after the fact, for speed.
+
+The project should not take more than 5 seconds to load on a 20 Mbps internet connection.
 
 ## Use Cases
 
 In this section, you should list use cases for the project. Use cases are a thorough description of how the system will be used. Each group member must supply at least two use cases. Each use case should be written in the following format:
 
-* **ID:** A unique identifier for the use case. This should be a number that is unique across the entire document (something like UC-1, UC-2, etc. but be sure to replace the word `ID` with the unique identifier).
-  * **Description:** A description of the use case that gives the user a high-level overview of how the system is interacted with.
-  * **Actors:** A list of the actors that are involved in the use case. Only include the actors that are directly involved. Actors are the people or things that interact with the system. For example, when ordering at a fast food restaurant, one might have the following actors: the customer, the cashier, and the cook. But only the customer and the cashier are directly involved in the use case of ordering food. The cook is not directly involved in the use case of ordering food.
-  * **Preconditions:** A list of the preconditions for the use case. This should be a list of the preconditions for the use case, which are the conditions that must be met before the use case can be executed. Continuing with the restaurant example, the customer must have money in their wallet and the cashier must be logged in to the system before the use case of ordering food can be executed.
-  * **Postconditions:** A list of the postconditions for the use case. This should be a list of the postconditions for the use case, which are the conditions that must be met after the use case has been executed. Continuing with the restaurant example, the customer must have their food and the cashier must have the customer's money after the use case of ordering food has been executed.
+* **UC 1.1.1:** 
+  * **Description:** As a reader, I want to leave a comment on a page. 
+  * **Actors:** Reader leaving the comment.
+  * **Preconditions:** The page has been completely loaded, including the comic and the other comments. 
+  * **Postconditions:** The comment has been left on the page, and is visible on other users' pages after they refresh the page. 
+* **I C1.1.2:** As an artist, I want to remove a comment from my page. 
+  * **Description:** Artist selects a comment for removal, and removes it.
+  * **Actors:** Artist removing the comment.
+  * **Preconditions:** The artist is logged in to the control page. There is already a comment, which is to be removed.
+  * **Postconditions:** The comment has been removed. 
 
 ## User Stories
 
 In this section, you should list user stories for the project. User stories are a short description of how a user will be interacting with the system. Each group member must supply at least two user stories. Each user story should be written in the following format:
 
-* **ID:** A unique identifier for the user story. This should be a number that is unique across the entire document (something like US-1, US-2, etc. but be sure to replace the word `ID` with the unique identifier).
-  * **Type of User:** The type of user that the user story is for. This should be a single word that describes the type of user. For example, a user story for a customer might be `Customer` and a user story for an administrator might be `Admin`.
-  * **Description:** A description of the user story that gives a narrative from that user's perspective. This can be any length, but it must paint the picture of what the user wants to do, how they intend to do it, why they want to, and what they expect to happen.
+* **US 1.1.1:** 
+  * **Type of User:** `Reader`
+  * **Description:** As a reader, I want to enjoy reading a webcomic and connect with the community around it. I expect to load a page, read a comic, and then read the comments left underneath it. If I am so inclined, I also expect to leave a comment of my own; in occasional circumstances, I may even wish to refresh the page several times in a row, both for purposes of having "conversations" and to eagerly begin reading a new page the instant it is published.
+  * **US 1.1.2:** 
+  * **Type of User:** `Artist`
+  * **Description:** As an artist, I want to curate the community that I am fostering around my project. After having posted a new page, I would like to review the praise, critiques, and other such comments that will appear beneath it. I would also like to filter and remove the inevitable objectionable comments, so that my work can be enjoyed by others without intrusion.
 
 ## Glossary
 
 In this section, you should list any terms that are used in the document that may not be immediately obvious to a naive reader. Each group member must supply at least one term. Each term should be written in the following format:
 
-* **Term:** The term that is being defined. This should be a single word or phrase that is being defined.
-  * **Definition:** A definition of the term. This should be a short description of the term that is being defined. This should be a single sentence that describes the term.
+* **Term:** Artist
+  * **Definition:** The owner of the site, who creates the displayed art and curates the comments and community that revolve around it.
+* **Term:** Reader
+  * **Definition:** The users of the site, who enjoy the created webcomic and leave comments regarding it.
