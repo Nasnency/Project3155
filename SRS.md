@@ -21,6 +21,7 @@ When a change is made to the document, a new revision should be created. The rev
 | 1.1 | 03/27/23 | Initial draft edit | [Alex Gonzalez](mailto:agonza79@uncc.edu) | [Alex Gonzalez](mailto:agonza79@uncc.edu) |
 | 1.2 | 03/30/23 | Intial draft edit | [Zileyah Onafowora](mmailto:zonafowo@uncc.edu) |[Zileyah Onafowora](mmailto:zonafowo@uncc.edu)
 | 1.3 | 03/30/23 | Draft Formatting | [Alex Gonzalez](mailto:agonza79@uncc.edu) | [Alex Gonzalez](mailto:agonza79@uncc.edu) |
+| 1.4 | 03/30/23 | Added further requirements, user cases and stories | [Alex Gonzalez](mailto:agonza79@uncc.edu) | [Alex Gonzalez](mailto:agonza79@uncc.edu) |
 
 ## Table of Contents
 
@@ -57,6 +58,18 @@ Each group member must supply at least three functional requirements for the pro
   * **Priority:** 3
   * **Rationale:** Just as it is important for users to leave comments, it should be important for artists to curate them, to prevent content they disagree with from being visible and associated with their work.
   * **Testing:** The artist should log into the control page and remove a pre-existing comment, which should vanish upon refresh for all users.
+* **REQ 1.1.4:** 
+  * **Description:** The user should be able to bookmark a page.
+  * **Type:** `Functional`
+  * **Priority:** 2
+  * **Rationale:** Allowing a user to preserve a page for future reference and return to it later would enrich their enjoyment of the comic. 
+  * **Testing:** The user should log into the website, navigate to a page they would like to bookmark, and then bookmark it. The page should then appear in their list of bookmarks for later review. 
+* **REQ 1.1.5:** 
+  * **Description:** The user should be able to navigate forwards and backwards through different comic pages.
+  * **Type:** `Functional`
+  * **Priority:** 4
+  * **Rationale:** Being able to navigate to pages other than the most recent allows the users to enjoy previous pages and read the comic as a whole.
+  * **Testing:** The user should access the webcomic site, and then click the feature that moves them to a new page, which should load the webpage for that comic page.
 
 ## Constraints
 
@@ -78,6 +91,16 @@ In this section, you should list use cases for the project. Use cases are a thor
   * **Actors:** Artist removing the comment.
   * **Preconditions:** The artist is logged in to the control page. There is already a comment, which is to be removed.
   * **Postconditions:** The comment has been removed. 
+* **UC 1.1.3:** As a reader, I want to bookmak a page.
+  * **Description:** Reader clicks a bookmarking button and bookmarks a page.
+  * **Actors:** Reader marking the page.
+  * **Preconditions:** The reader is logged in and on the page they want to bookmark.
+  * **Postconditions:** The page is bookmarked and added to that reader's bookmarks.
+* **UC 1.1.4:** As a site user, I want to navigate through the site with back and forward buttons.
+  * **Description:** User selects a button and navigates through the comic pages.
+  * **Actors:** User navigating the site.
+  * **Preconditions:** The user is on the site.
+  * **Postconditions:** The user has navigated to a different comic page. 
 
 ## User Stories
 
@@ -89,6 +112,12 @@ In this section, you should list user stories for the project. User stories are 
 * **US 1.1.2:** 
   * **Type of User:** `Artist`
   * **Description:** As an artist, I want to curate the community that I am fostering around my project. After having posted a new page, I would like to review the praise, critiques, and other such comments that will appear beneath it. I would also like to filter and remove the inevitable objectionable comments, so that my work can be enjoyed by others without intrusion.
+* **US 1.1.3:** 
+  * **Type of User:** `Reader`
+  * **Description:** As a reader, I would like to bookmark a page so that I may return to it later. After navigating to a page that I would like to mark for later, I will click on a button, which will add the page to my bookmarks. I will then go to my bookmarks page, and review the bookmarks I have saved.
+* **US 1.1.4:** 
+  * **Type of User:** `User`
+  * **Description:** As a user of the site, I want to click the buttons that will navigate me forward and backward through the comic, and then be navigated as expected through said comic to other pages.
 
 ## Glossary
 
@@ -98,3 +127,5 @@ In this section, you should list any terms that are used in the document that ma
   * **Definition:** The owner of the site, who creates the displayed art and curates the comments and community that revolve around it.
 * **Term:** Reader
   * **Definition:** The users of the site, who enjoy the created webcomic and leave comments regarding it.
+* **Term:** User
+  * **Definition:** Anyone who is interacting with the site, Artist or Reader.
