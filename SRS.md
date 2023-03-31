@@ -20,6 +20,7 @@ When a change is made to the document, a new revision should be created. The rev
 | 1.0 | 03/22/23 | Initial draft | [David Gary](mailto:dgary9@uncc.edu) | [David Gary](mailto:dgary@uncc.edu) |
 | 1.1 | 03/27/23 | Initial draft edit | [Alex Gonzalez](mailto:agonza79@uncc.edu) | [Alex Gonzalez](mailto:agonza79@uncc.edu) |
 | 1.2 | 03/30/23 | Intial draft edit | [Zileyah Onafowora](mmailto:zonafowo@uncc.edu) |[Zileyah Onafowora](mmailto:zonafowo@uncc.edu)
+| 1.3 | 03/30/23 | Draft Formatting | [Alex Gonzalez](mailto:agonza79@uncc.edu) | [Alex Gonzalez](mailto:agonza79@uncc.edu) |
 
 ## Table of Contents
 
@@ -72,7 +73,7 @@ In this section, you should list use cases for the project. Use cases are a thor
   * **Actors:** Reader leaving the comment.
   * **Preconditions:** The page has been completely loaded, including the comic and the other comments. 
   * **Postconditions:** The comment has been left on the page, and is visible on other users' pages after they refresh the page. 
-* **I C1.1.2:** As an artist, I want to remove a comment from my page. 
+* **UC 1.1.2:** As an artist, I want to remove a comment from my page. 
   * **Description:** Artist selects a comment for removal, and removes it.
   * **Actors:** Artist removing the comment.
   * **Preconditions:** The artist is logged in to the control page. There is already a comment, which is to be removed.
@@ -85,7 +86,7 @@ In this section, you should list user stories for the project. User stories are 
 * **US 1.1.1:** 
   * **Type of User:** `Reader`
   * **Description:** As a reader, I want to enjoy reading a webcomic and connect with the community around it. I expect to load a page, read a comic, and then read the comments left underneath it. If I am so inclined, I also expect to leave a comment of my own; in occasional circumstances, I may even wish to refresh the page several times in a row, both for purposes of having "conversations" and to eagerly begin reading a new page the instant it is published.
-  * **US 1.1.2:** 
+* **US 1.1.2:** 
   * **Type of User:** `Artist`
   * **Description:** As an artist, I want to curate the community that I am fostering around my project. After having posted a new page, I would like to review the praise, critiques, and other such comments that will appear beneath it. I would also like to filter and remove the inevitable objectionable comments, so that my work can be enjoyed by others without intrusion.
 
