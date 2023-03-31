@@ -7,7 +7,7 @@ Fill the document out following the guidelines listed in each section. Maintain 
 ## Group Members
 
 * [Alex Gonzalez](mailto:agonza79@uncc.edu)
-* [Name](mmailto:email@uncc.edu)
+* [Zileyah Onafowora](mmailto:zonafowo@uncc.edu)
 * [Name](mmailto:email@uncc.edu)
 * [Name](mmailto:email@uncc.edu)
 
