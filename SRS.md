@@ -21,6 +21,7 @@ When a change is made to the document, a new revision should be created. The rev
 | 1.1 | 03/27/23 | Initial draft edit | [Alex Gonzalez](mailto:agonza79@uncc.edu) | [Alex Gonzalez](mailto:agonza79@uncc.edu) |
 | 1.2 | 03/30/23 | Intial draft edit | [Zileyah Onafowora](mmailto:zonafowo@uncc.edu) |[Zileyah Onafowora](mmailto:zonafowo@uncc.edu)
 | 1.3 | 03/30/23 | Draft Formatting | [Alex Gonzalez](mailto:agonza79@uncc.edu) | [Alex Gonzalez](mailto:agonza79@uncc.edu) |
+| 1.3 | 04/4/23 | Draft Formatting | [Udoeyop David](mailto:dudoeyop@uncc.edu) | [Udoeyop David](mailto:dudoeyop@uncc.edu) |
 
 ## Table of Contents
 
@@ -57,6 +58,12 @@ Each group member must supply at least three functional requirements for the pro
   * **Priority:** 3
   * **Rationale:** Just as it is important for users to leave comments, it should be important for artists to curate them, to prevent content they disagree with from being visible and associated with their work.
   * **Testing:** The artist should log into the control page and remove a pre-existing comment, which should vanish upon refresh for all users.
+* **REQ 1.1.4:** 
+  * **Description:** A user should be able to edit comments left on the artist page.
+  * **Type:** `Functional`
+  * **Priority:** 4
+  * **Rationale:** Humans make mistakes, and it is important to cater for that when building this site..
+  * **Testing:** User should be able to click edit button to edit an existing comment. New comment should be shown upon refresh for all users.
 
 ## Constraints
 
