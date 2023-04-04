@@ -85,7 +85,7 @@ In this section, you should list use cases for the project. Use cases are a thor
   * **Actors:** Artist removing the comment.
   * **Preconditions:** The artist is logged in to the control page. There is already a comment, which is to be removed.
   * **Postconditions:** The comment has been removed. 
-* * **UC 1.1.3:** As a user, I want to able to edit an
+* **UC 1.1.3:** As a user, I want to able to edit an
   exsisting comment.
   * **Description:** User clicks the edit button and edits the comment.
   * **Actors:** Reader editing the comment.
