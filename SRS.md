@@ -7,9 +7,8 @@ Fill the document out following the guidelines listed in each section. Maintain 
 ## Group Members
 
 * [Alex Gonzalez](mailto:agonza79@uncc.edu)
-* [Zileyah Onafowora](mmailto:zonafowo@uncc.edu)
-* [Name](mmailto:email@uncc.edu)
-* [Name](mmailto:email@uncc.edu)
+* [Zileyah Onafowora](mailto:zonafowo@uncc.edu)
+* [Udoeyop David](mailto:dudoeyop@uncc.edu)
 
 ## Revisions
 
@@ -19,9 +18,11 @@ When a change is made to the document, a new revision should be created. The rev
 | --- | --- | --- | --- | --- |
 | 1.0 | 03/22/23 | Initial draft | [David Gary](mailto:dgary9@uncc.edu) | [David Gary](mailto:dgary@uncc.edu) |
 | 1.1 | 03/27/23 | Initial draft edit | [Alex Gonzalez](mailto:agonza79@uncc.edu) | [Alex Gonzalez](mailto:agonza79@uncc.edu) |
-| 1.2 | 03/30/23 | Intial draft edit | [Zileyah Onafowora](mmailto:zonafowo@uncc.edu) |[Zileyah Onafowora](mmailto:zonafowo@uncc.edu)
+| 1.2 | 03/30/23 | Intial draft edit | [Zileyah Onafowora](mailto:zonafowo@uncc.edu) |[Zileyah Onafowora](mailto:zonafowo@uncc.edu)
 | 1.3 | 03/30/23 | Draft Formatting | [Alex Gonzalez](mailto:agonza79@uncc.edu) | [Alex Gonzalez](mailto:agonza79@uncc.edu) |
 | 1.4 | 03/30/23 | Added further requirements, user cases and stories | [Alex Gonzalez](mailto:agonza79@uncc.edu) | [Alex Gonzalez](mailto:agonza79@uncc.edu) |
+| 1.5 | 04/4/23 | Draft Formatting | [Udoeyop David](mailto:dudoeyop@uncc.edu) | [Udoeyop David](mailto:dudoeyop@uncc.edu) |
+| 1.6 | 04/5/23 | Finalized requirements, user cases and stories | [Alex Gonzalez](mailto:agonza79@uncc.edu) | [Alex Gonzalez](mailto:agonza79@uncc.edu) |
 
 ## Table of Contents
 
@@ -70,6 +71,12 @@ Each group member must supply at least three functional requirements for the pro
   * **Priority:** 4
   * **Rationale:** Being able to navigate to pages other than the most recent allows the users to enjoy previous pages and read the comic as a whole.
   * **Testing:** The user should access the webcomic site, and then click the feature that moves them to a new page, which should load the webpage for that comic page.
+* **REQ 1.1.6:**
+  * **Description:** A user should be able to edit comments left on the artist page.
+  * **Type:** `Functional`
+  * **Priority:** 4
+  * **Rationale:** Humans make mistakes, and it is important to cater for that when building this site.
+  * **Testing:** User should be able to click edit button to edit an existing comment. New comment should be shown upon refresh for all users.
 
 ## Constraints
 
@@ -101,6 +108,11 @@ In this section, you should list use cases for the project. Use cases are a thor
   * **Actors:** User navigating the site.
   * **Preconditions:** The user is on the site.
   * **Postconditions:** The user has navigated to a different comic page. 
+* **UC 1.1.5:** As a user, I want to be able to edit an exsisting comment.
+  * **Description:** User clicks the edit button and edits the comment.
+  * **Actors:** Reader editing the comment.
+  * **Preconditions:** The user is logged to the site and are editing their own comment. A comment has to already exist to be edidted. 
+  * **Postconditions:** The comment has been edited. 
 
 ## User Stories
 
