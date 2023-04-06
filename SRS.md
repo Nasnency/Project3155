@@ -64,7 +64,24 @@ Each group member must supply at least three functional requirements for the pro
   * **Priority:** 4
   * **Rationale:** Humans make mistakes, and it is important to cater for that when building this site..
   * **Testing:** User should be able to click edit button to edit an existing comment. New comment should be shown upon refresh for all users.
-
+* **REQ 1.1.5:**
+ * **Description:** A user should be able to create an account 
+  * **Type:** `Functional`
+  * **Priority:** 2
+  * **Rationale:** So they can have the actions availible to set a bookmark not to lose their page and a account to connect those comments with.
+  * **Testing:**User should be able to click create account signing up with their email and a password, email should be sent to the users email thanking them for creating an acoount and asking them to verify
+* **REQ 1.1.6:**
+ * **Description:** User should be able to login to said account and have the option to save login
+  * **Type:** `Functional`
+  * **Priority:** 2
+  * **Rationale:** So they can log back into the account that they have created and have the otion to save the key to their phone
+  * **Testing:** Users should have the option to log back into their account using their email and password and have the option to save their log in
+* **REQ 1.1.9:**
+  * **Description:** Users should be able to share comics on social media platforms.
+ * **Type:** 'Functional'
+  * **Priority:** 2
+  * **Rationale:** Allowing users to share comics on social media platforms can increase visibility and reach for the webcomic, and can also lead to increased user engagement and traffic to the website.
+ * **Testing:** A user should be able to click on a "share" button or icon, which should provide options to share the comic on various social media platforms. Clicking on the shared link should take the user to the shared comic on the webcomic site.
 ## Constraints
 
 The project should preload the comic and comments, instead of loading them after the fact, for speed.
