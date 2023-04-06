@@ -22,7 +22,7 @@ When a change is made to the document, a new revision should be created. The rev
 | 1.3 | 03/30/23 | Draft Formatting | [Alex Gonzalez](mailto:agonza79@uncc.edu) | [Alex Gonzalez](mailto:agonza79@uncc.edu) |
 | 1.4 | 03/30/23 | Added further requirements, user cases and stories | [Alex Gonzalez](mailto:agonza79@uncc.edu) | [Alex Gonzalez](mailto:agonza79@uncc.edu) |
 | 1.5 | 04/4/23 | Draft Formatting | [Udoeyop David](mailto:dudoeyop@uncc.edu) | [Udoeyop David](mailto:dudoeyop@uncc.edu) |
-| 1.6 | 04/5/23 | Finalized requirements, user cases and stories | [Alex Gonzalez](mailto:agonza79@uncc.edu) | [Alex Gonzalez](mailto:agonza79@uncc.edu) |
+| 1.6 | 04/5/23 | Organized requirements, user cases and stories | [Alex Gonzalez](mailto:agonza79@uncc.edu) | [Alex Gonzalez](mailto:agonza79@uncc.edu) |
 
 ## Table of Contents
 
@@ -48,35 +48,71 @@ Each group member must supply at least three functional requirements for the pro
   * **Rationale:** The artist being able to control their content, and the readers not being able to manipulate it maliciously, is the central focus of the site.
   * **Testing:** The artist should input their credentials at a login page and verify that it redirects them to the control page; readers should be blocked or redirected if they attempt to do so.
 * **REQ 1.1.2:** 
-  * **Description:** A user should be able to leave a comment on the comic, which will then become visible to other users when they refresh the page.
+  * **Description:** The artist should be able to submit a new comic page from the control page.
   * **Type:** `Functional`
-  * **Priority:** 3
-  * **Rationale:** User engagement is a core part of the design and experience of the site, and allows the artist to receive feedback, as well.
-  * **Testing:** A user should write and submit a comment; a separate user, upon refreshing the page, should be able to view the comment. 
+  * **Priority:** 1
+  * **Rationale:** The entire purpose of this site is for the artist to share their work.
+  * **Testing:** The artist should log into the control page and submit an image file, which should appear visible upon refresh for all users.
 * **REQ 1.1.3:** 
   * **Description:** The artist should be able to remove comments from the control page.
   * **Type:** `Functional`
   * **Priority:** 3
   * **Rationale:** Just as it is important for users to leave comments, it should be important for artists to curate them, to prevent content they disagree with from being visible and associated with their work.
   * **Testing:** The artist should log into the control page and remove a pre-existing comment, which should vanish upon refresh for all users.
-* **REQ 1.1.4:** 
-  * **Description:** The user should be able to bookmark a page.
+* **REQ 1.1.4:**
+  * **Description:** The artist should be able to delete a comic page from the control page.
   * **Type:** `Functional`
-  * **Priority:** 2
-  * **Rationale:** Allowing a user to preserve a page for future reference and return to it later would enrich their enjoyment of the comic. 
-  * **Testing:** The user should log into the website, navigate to a page they would like to bookmark, and then bookmark it. The page should then appear in their list of bookmarks for later review. 
+  * **Priority:** 3
+  * **Rationale:** The artist should have the ability to curate their content and be able to take down comic pages in case of error.
+  * **Testing:** The artist should log into the control page and delete a comic page, which should vanish upon refresh for all users.
 * **REQ 1.1.5:** 
-  * **Description:** The user should be able to navigate forwards and backwards through different comic pages.
+  * **Description:** The reader should be able to bookmark a comic page.
   * **Type:** `Functional`
-  * **Priority:** 4
-  * **Rationale:** Being able to navigate to pages other than the most recent allows the users to enjoy previous pages and read the comic as a whole.
-  * **Testing:** The user should access the webcomic site, and then click the feature that moves them to a new page, which should load the webpage for that comic page.
-* **REQ 1.1.6:**
-  * **Description:** A user should be able to edit comments left on the artist page.
+  * **Priority:** 3
+  * **Rationale:** Allowing a user to preserve a comic page for future reference and return to it later would enrich their enjoyment of the comic. 
+  * **Testing:** The user should log into the website, navigate to a page they would like to bookmark, and then bookmark it. The page should then appear in their list of bookmarks for later review. 
+* **REQ 1.1.6:** 
+  * **Description:** A reader should be able to leave a comment under a comic page, which will then become visible to other users when they refresh the page.
+  * **Type:** `Functional`
+  * **Priority:** 3
+  * **Rationale:** User engagement is a core part of the design and experience of the site, and allows the artist to receive feedback, as well.
+  * **Testing:** A reader should write and submit a comment; a separate user, upon refreshing the page, should be able to view the comment. 
+* **REQ 1.1.7:**
+  * **Description:** A reader should be able to edit their own comments left under a comic page.
   * **Type:** `Functional`
   * **Priority:** 4
   * **Rationale:** Humans make mistakes, and it is important to cater for that when building this site.
   * **Testing:** User should be able to click edit button to edit an existing comment. New comment should be shown upon refresh for all users.
+* **REQ 1.1.8:** 
+  * **Description:** Users should be able to navigate forwards and backwards through different comic pages. 
+  * **Type:** `Functional`
+  * **Priority:** 1
+  * **Rationale:** Being able to navigate to pages other than the most recent allows the users to enjoy previous pages and read the comic as a whole.
+  * **Testing:** The user should access the webcomic site, and then click the feature that moves them to a new page, which should load the webpage for that comic page.
+* **REQ 1.1.9:** 
+  * **Description:** Users without an account should be able to register an account by providing a username, email address and password.
+  * **Type:** `Functional`
+  * **Priority:** 2
+  * **Rationale:** Having an account allows the user to interact actively with the site through features such as bookmarking and commenting.
+  * **Testing:** The user should input the required credentials at the account registration page and succesfully create an account. If an email address is already associated with an account, the site should prompt the user to log in instead.
+* **REQ 1.2.0:** 
+  * **Description:** Users with an existing account should be able to log in by providing a username and password.
+  * **Type:** `Functional`
+  * **Priority:** 2
+  * **Rationale:** Logging in allows the user to access their personalized features.
+  * **Testing:** The user should input the required credentials at the log in page and succesfully log into their account. If password or username is incorrect or not found, the site should warn the user.
+* **REQ 1.2.1:** 
+  * **Description:** Users should recieve a URL in their clipboard by pressing a share button.
+  * **Type:** `Functional`
+  * **Priority:** 5
+  * **Rationale:** Allowing users to share the website and its content will facilitate the site's growth. 
+  * **Testing:** The user should be able to click the share button and receive a formatted message containing the website's URL in their clipboard. The share button should display a message to notify the user of this action. 
+* **REQ 1.2.2:** 
+  * **Description:** The site should reflect the theme of the artist's comic.
+  * **Type:** `Non-functional`
+  * **Priority:** 5
+  * **Rationale:** The site should be appealing to the audience and follow the comic's aesthetic theme.
+
 
 ## Constraints
 
@@ -88,30 +124,35 @@ The project should not take more than 5 seconds to load on a 20 Mbps internet co
 
 In this section, you should list use cases for the project. Use cases are a thorough description of how the system will be used. Each group member must supply at least two use cases. Each use case should be written in the following format:
 
-* **UC 1.1.1:** 
-  * **Description:** As a reader, I want to leave a comment on a page. 
+* **UC 1.1.1:** As a reader, I want to leave a comment under a comic page.
+  * **Description:** A reader creates a new comment under a comic page. 
   * **Actors:** Reader leaving the comment.
   * **Preconditions:** The page has been completely loaded, including the comic and the other comments. 
   * **Postconditions:** The comment has been left on the page, and is visible on other users' pages after they refresh the page. 
-* **UC 1.1.2:** As an artist, I want to remove a comment from my page. 
+* **UC 1.1.2:** As an artist, I want to remove a comment from a comic page. 
   * **Description:** Artist selects a comment for removal, and removes it.
   * **Actors:** Artist removing the comment.
   * **Preconditions:** The artist is logged in to the control page. There is already a comment, which is to be removed.
   * **Postconditions:** The comment has been removed. 
-* **UC 1.1.3:** As a reader, I want to bookmak a page.
+* **UC 1.1.3:** As a reader, I want to bookmak a comic page.
   * **Description:** Reader clicks a bookmarking button and bookmarks a page.
   * **Actors:** Reader marking the page.
   * **Preconditions:** The reader is logged in and on the page they want to bookmark.
   * **Postconditions:** The page is bookmarked and added to that reader's bookmarks.
-* **UC 1.1.4:** As a site user, I want to navigate through the site with back and forward buttons.
+* **UC 1.1.4:** As a site user, I want to navigate through the comic pages with back and forward buttons.
   * **Description:** User selects a button and navigates through the comic pages.
   * **Actors:** User navigating the site.
   * **Preconditions:** The user is on the site.
   * **Postconditions:** The user has navigated to a different comic page. 
-* **UC 1.1.5:** As a user, I want to be able to edit an exsisting comment.
-  * **Description:** User clicks the edit button and edits the comment.
-  * **Actors:** Reader editing the comment.
-  * **Preconditions:** The user is logged to the site and are editing their own comment. A comment has to already exist to be edidted. 
+* **UC 1.1.5:** As an artist, I want to submit new comic pages to the site.
+  * **Description:** Artist selects an image file to upload, and uploads it to the site.
+  * **Actors:** Artist submitting a new comic page.
+  * **Preconditions:** The artist is in the control page and has selected an image file to submit.
+  * **Postconditions:** There is a new comic page available for all users to see. 
+* **UC 1.1.6:** As a reader, I want to be able to edit an exsisting comment.
+  * **Description:** Reader clicks the edit button and edits their comment.
+  * **Actors:** Reader editing their comment.
+  * **Preconditions:** The reader is logged to the site and on a comic page with a comment previously created by them. 
   * **Postconditions:** The comment has been edited. 
 
 ## User Stories
@@ -130,6 +171,12 @@ In this section, you should list user stories for the project. User stories are 
 * **US 1.1.4:** 
   * **Type of User:** `User`
   * **Description:** As a user of the site, I want to click the buttons that will navigate me forward and backward through the comic, and then be navigated as expected through said comic to other pages.
+* **US 1.1.5:** 
+  * **Type of User:** `User`
+  * **Description:** As a user of the site, I want to share this webpage with others and in other platforms in an easy and quick manner. 
+* **US 1.1.6:** 
+  * **Type of User:** `Artist`
+  * **Description:** As an artist, I want my webpage to follow the theme of my artwork and be appealing to my audience. 
 
 ## Glossary
 
@@ -138,6 +185,6 @@ In this section, you should list any terms that are used in the document that ma
 * **Term:** Artist
   * **Definition:** The owner of the site, who creates the displayed art and curates the comments and community that revolve around it.
 * **Term:** Reader
-  * **Definition:** The users of the site, who enjoy the created webcomic and leave comments regarding it.
+  * **Definition:** The users of the site who have an account, who enjoy the created webcomic and leave comments regarding it.
 * **Term:** User
   * **Definition:** Anyone who is interacting with the site, Artist or Reader.
