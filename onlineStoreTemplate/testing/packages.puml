@@ -8,4 +8,10 @@ package "testing.coreTests" as testing.coreTests #aliceblue {
 }
 package "testing.dbTests" as testing.dbTests #aliceblue {
 }
+package "testing.edit" as testing.dbTests #aliceblue {
+}
+package "testing.bookmark" as testing.dbTests #aliceblue {
+}
+
+
 @enduml
