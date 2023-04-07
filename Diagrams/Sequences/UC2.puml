@@ -1,7 +1,9 @@
-@startuml packages
-set namespaceSeparator none
-package "authentication" as authentication #aliceblue {
-}
-package "authentication.authTools" as authentication.authTools #aliceblue {
-}
+@startuml delete_comment
+actor Artist
+boundary "Actions" as actions
+control "Sessions" as sessions
+activate actions
+Artist -> actions: delete_comment(url, comment_id, db)
+actions --> Artist: return to artist control
+deactivate actions
 @enduml

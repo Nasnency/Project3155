@@ -1,7 +1,9 @@
-@startuml packages
-set namespaceSeparator none
-package "authentication" as authentication #aliceblue {
-}
-package "authentication.authTools" as authentication.authTools #aliceblue {
-}
+@startuml leave_comment
+actor Reader
+boundary "Actions" as actions
+control "Sessions" as sessions
+activate actions
+Reader -> actions: leave_comment(url, comment)
+actions ->> Reader: return to user control
+deactivate actions
 @enduml
