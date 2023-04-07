@@ -7,18 +7,36 @@ class "Sessions" as core.session.Sessions #aliceblue {
   get_session(username: str) -> UserSession
   remove_session(username: str) -> None
 }
-class "UserSession" as core.session.UserSession #aliceblue {
-  cart : dict
+class "AnonymousSession" as core.session.AnonymousSession #aliceblue {
+  type : int
   date : NoneType, datetime
   db : Database
-  total_cost : int
+  navigate_page(url: str) -> None
+  get_share_link() -> str
+  login(username: str, password: str) -> None
+}
+class "ReaderSession" as core.session.ReaderSession #aliceblue {
+  type : int
+  date : NoneType, datetime
+  db : Database
   username : str
-  add_new_item(id: str, name: str, price: int, quantity: int, discount: float, tax_rate: float) -> None
-  empty_cart() -> dict
-  is_item_in_cart(id: str) -> bool
-  remove_item(id: str) -> None
-  submit_cart() -> None
-  update_item_quantity(id: str, change_to_quantity: int) -> None
-  update_total_cost() -> None
+  navigate_page(url: str) -> None
+  get_share_link() -> str
+  bookmark_page(url: str, db: Database) -> None
+  leave_comment(url: str, comment: str) -> None
+  edit_comment(url: str, comment_id: int, comment: str) -> None
+  logout() -> None
+}
+class "ArtistSession" as core.session.ArtistSession #aliceblue {
+  type : int
+  date : NoneType, datetime
+  db : Database
+  username : str
+  navigate_page(url: str) -> None
+  get_share_link() -> str
+  upload_page(url: str, db: Database) -> None
+  delete_page(url: str, db: Database) -> None
+  delete_comment(url: str, comment_id: int, db: Database) -> None
+  logout() -> None
 }
 @enduml
