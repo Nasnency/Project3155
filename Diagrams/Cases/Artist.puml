@@ -1,7 +1,18 @@
-@startuml packages
-set namespaceSeparator none
-package "authentication" as authentication #aliceblue {
+@startuml artist
+left to right direction
+actor Artist
+rectangle "Actions" as actions {
+    (Navigate)
+    (Share)
+    (Upload_page)
+    (Delete_page)
+    (Delete_comment)
+    (Logout)
 }
-package "authentication.authTools" as authentication.authTools #aliceblue {
-}
+Artist --> (Navigate)
+Artist --> (Share)
+Artist --> (Upload_page)
+Artist --> (Delete_page)
+Artist --> (Delete_comment)
+Artist --> (Logout)
 @enduml
