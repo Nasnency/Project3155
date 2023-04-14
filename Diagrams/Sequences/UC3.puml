@@ -4,4 +4,16 @@ package "authentication" as authentication #aliceblue {
 }
 package "authentication.authTools" as authentication.authTools #aliceblue {
 }
+package "testing" as testing #aliceblue {
+    package "authTests" as authTests #aliceblue {
+    }
+    package "coreTests" as coreTests #aliceblue {
+    }
+    package "dbTests" as dbTests #aliceblue {
+    }
+    package "edit" as edit #aliceblue {
+    }
+    package "bookmark" as bookmark #aliceblue {
+    }
+}
 @enduml
