@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-12" id="index_buttons">
+        <a href="/login" class="btn btn-primary" id="login_button">Login</a>
+        <a href="/register" class="btn btn-primary" id="register_button">Register</a>
+    </div>
+</div>
+<div class="page">
+<img src="{{ product.image_url }}" class="comic-page-img" alt="Page 1">
+</div>
+<div class="row" id="products_page">
+    <div class="col-md-12">
+        <h3>Comments Section</h3>
+        <hr>
+        <div class="row">
+            <h2>Locked.</h2>
+        </div>
+    </div>
+    {% endblock %}
