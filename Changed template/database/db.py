@@ -45,6 +45,18 @@ class Database:
 
     # ------ Getter methods ------
 
+    def get_comics(self):
+        self.cursor.execute("SELECT * FROM comic")
+        return self.cursor.fetchall()
+
+    def get_latest_comic(self):
+        self.cursor.execute("SELECT page_name, image_url, MAX(rowid) FROM comic")
+        return self.cursor.fetchone()
+    
+    def get_login_data(self):
+        self.cursor.execute("SELECT `username`, `password_salt`, `password_hash` FROM users")
+        return self.cursor.fetchall()
+
     def get_full_inventory(self):
         """
         Gets all inventory in the database.

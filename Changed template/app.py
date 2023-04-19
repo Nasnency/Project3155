@@ -9,8 +9,10 @@ app = Flask(__name__)
 HOST, PORT = 'localhost', 8080
 global username, products, db, sessions
 username = 'default'
-db = Database('database/storeRecords.db')
-products = db.get_full_inventory()
+db = Database('database/comicData.db')
+#products = db.get_full_inventory()
+comics = db.get_comics()
+latest_comic = db.get_latest_comic()
 sessions = Sessions()
 sessions.add_new_session(username, db)
 
@@ -26,7 +28,7 @@ def index_page():
     returns:
         - None
     """
-    return render_template('index.html', username=username, products=products, sessions=sessions)
+    return render_template('index.html', username='<none, but TODO: check session var instead>', latest=latest_comic, sessions=sessions)
 
 
 @app.route('/login')
@@ -60,9 +62,9 @@ def login():
     """
     username = request.form['username']
     password = request.form['password']
-    if login_pipeline(username, password):
+    if login_pipeline(username, password, db):
         sessions.add_new_session(username, db)
-        return render_template('home.html', products=products, sessions=sessions)
+        return render_template('index.html', username=username, latest=latest_comic, sessions=sessions)
     else:
         return render_template('login.html')
 
@@ -106,10 +108,11 @@ def register():
     db.insert_user(username, key, email, first_name, last_name)
     return render_template('index.html')
 
-
+"""
+#no longer used
 @app.route('/checkout', methods=['POST'])
 def checkout():
-    """
+   
     Renders the checkout page when the user is at the `/checkout` endpoint with a POST request.
 
     args:
@@ -120,7 +123,7 @@ def checkout():
 
     modifies:
         - sessions: adds items to the user's cart
-    """
+    
     order = {}
     user_session = sessions.get_session(username)
     for item in products:
@@ -134,7 +137,7 @@ def checkout():
     user_session.submit_cart()
 
     return render_template('checkout.html', order=order, sessions=sessions, total_cost=user_session.total_cost)
-
+"""
 
 if __name__ == '__main__':
     app.run(debug=True, host=HOST, port=PORT)

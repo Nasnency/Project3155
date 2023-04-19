@@ -1,6 +1,11 @@
 from hashlib import sha512
 import os
 
+#this is to get the database in
+import sys
+sys.path.append("..")
+from database.db import Database
+
 
 def hash_password(password: str, salt: str = None) -> tuple:
     """
@@ -19,7 +24,7 @@ def hash_password(password: str, salt: str = None) -> tuple:
     return (salt, key)
 
 
-def username_exists(username: str) -> bool:
+def username_exists(username: str, db: Database) -> bool:
     """
     Checks if a username exists in the passwords.txt file.
 
@@ -30,13 +35,20 @@ def username_exists(username: str) -> bool:
         - True if the username exists, False if not.
     """
 
+    """
+    #no longer used
     with open("authentication/passwords.txt", "r") as file:
         lines = file.readlines()
     for line in lines:
         if line.split(":")[0] == username:
             return True
     return False
-
+    """
+    accts = db.get_login_data()
+    for acct in accts:
+        if acct['username'] == username:
+            return True
+    return False
 
 def update_passwords(username: str, key: str, salt: str):
     """
@@ -54,7 +66,7 @@ def update_passwords(username: str, key: str, salt: str):
     modifies:
         - passwords.txt: Updates an existing or adds a new username and password combination to the file.
     """
-
+    #TODO: switch this to database ver
     with open("authentication/passwords.txt", "r") as file:
         lines = file.readlines()
     with open("authentication/passwords.txt", "w") as file:
@@ -87,7 +99,7 @@ def check_password(password: str, salt: str, key: str) -> bool:
     return key == new_key
 
 
-def login_pipeline(username: str, password: str) -> bool:
+def login_pipeline(username: str, password: str, db: Database) -> bool:
     """
     Checks if a username and password combination is correct.
 
@@ -98,9 +110,11 @@ def login_pipeline(username: str, password: str) -> bool:
     returns:
         - True if the username and password combination is correct, False if not.
     """
-    if not username_exists(username):
+    if not username_exists(username, db):
         return False
 
+    #removing this and switching it with database logic
+    """
     with open("authentication/passwords.txt", "r") as file:
         lines = file.readlines()
     for line in lines:
@@ -109,7 +123,12 @@ def login_pipeline(username: str, password: str) -> bool:
             key = line.split(":")[2]
             return check_password(password, salt, key)
     return False
-
+    """
+    accts = db.get_login_data()
+    for acct in accts:
+        if acct['username'] == username:
+            return check_password(password, acct['password_salt'], acct['password_hash'])
+    return False
 
 def main():
     password = input("enter password: ")

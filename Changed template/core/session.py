@@ -24,7 +24,7 @@ class UserSession:
         self.total_cost = 0
         self.date = None
         self.db = db
-        self.cart = self.empty_cart()
+#        self.cart = self.empty_cart()
 
     def empty_cart(self) -> dict:
         """

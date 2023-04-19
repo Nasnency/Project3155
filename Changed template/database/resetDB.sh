@@ -1,7 +1,7 @@
 # check if the database exists
-if [ -f storeRecords.db ]; then
+if [ -f comicData.db ]; then
     echo "Database exists. Deleting..."
-    rm -rf storeRecords.db
+    rm -rf comicData.db
 fi
-sqlite3 storeRecords.db < schema.sql
-sqlite3 storeRecords.db < startingData.sql
+sqlite3 comicData.db < schema.sql
+sqlite3 comicData.db < startingData.sql
