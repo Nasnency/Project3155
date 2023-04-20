@@ -1,8 +1,9 @@
-@startuml packages
-set namespaceSeparator none
-package "authentication" as authentication #aliceblue {
-}
-package "authentication.authTools" as authentication.authTools #aliceblue {
+@startuml
+left to right direction
+
+actor User as U
+rectangle Site {
+  U -- (Navigate through comic pages with back and forward buttons)
 }
 left to right direction
 

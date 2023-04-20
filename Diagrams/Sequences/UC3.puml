@@ -1,9 +1,21 @@
 @startuml packages
 set namespaceSeparator none
+
 package "authentication" as authentication #aliceblue {
+    package "authTools" as authTools #aliceblue {
+    }
 }
-package "authentication.authTools" as authentication.authTools #aliceblue {
+
+package "database" as database #aliceblue {
+    package "db" as db #aliceblue {
+    }
 }
+
+package "core" as core #aliceblue {
+    package "session" as session #aliceblue {
+    }
+}
+
 package "testing" as testing #aliceblue {
     package "authTests" as authTests #aliceblue {
     }
@@ -16,4 +28,5 @@ package "testing" as testing #aliceblue {
     package "bookmark" as bookmark #aliceblue {
     }
 }
+
 @enduml
