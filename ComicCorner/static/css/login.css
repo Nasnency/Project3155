@@ -1,0 +1,29 @@
+body {
+    background-image: url('/static/images/login_bg.jpg');
+}
+
+#comic, #corner {
+    text-align: right;
+}
+
+.space {
+    margin: 35px;
+}
+
+#tag_title {
+    text-align: right;
+}
+
+#user, #pass {
+    margin: 0px 0px 0px 900px;
+}
+
+#username, #password {
+    border: 2px solid rgb(255, 0, 85);
+    border-radius: 4px;
+    width: 300px;
+}
+
+#login_button {
+    margin: 0px 0px 0px 900px;
+}
