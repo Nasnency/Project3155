@@ -25,9 +25,9 @@ class UserSession:
         self.date = None
         self.db = db
 #        self.cart = self.empty_cart()
-
+    """
     def empty_cart(self) -> dict:
-        """
+      
         Fills the cart dictionary with item ids and 0 quantities.
 
         args:
@@ -35,7 +35,7 @@ class UserSession:
 
         returns:
             - A dictionary of dictionaries representing the items in the user's cart.
-        """
+            
         inventory = self.db.get_full_inventory()
         new_cart = {}
         for item in inventory:
@@ -44,7 +44,6 @@ class UserSession:
         return new_cart
 
     def is_item_in_cart(self, id: str) -> bool:
-        """
         Checks if an item is in the user's cart.
 
         args:
@@ -52,11 +51,9 @@ class UserSession:
 
         returns:
             - True if the item is in the user's cart, False otherwise.
-        """
         return id in self.cart
 
     def add_new_item(self, id: str, name: str, price: int, quantity: int, discount: float = 0.0, tax_rate: float = 0.05) -> None:
-        """
         Creates a new item to add to the user's cart.
 
         args:
@@ -69,40 +66,38 @@ class UserSession:
 
         returns:
             - None
-        """
         self.cart[id] = {"name": name, "price": price, "quantity": quantity,
                          "discount": discount, "tax_rate": tax_rate}
 
     def update_item_quantity(self, id: str, change_to_quantity: int) -> None:
-        """
         Updates the quantity of an item in the user's cart.
 
         args:
             - id: The id of the item.
             - quantity: The quantity of the item.
-        """
         if self.cart[id]["quantity"] + change_to_quantity <= 0:
             self.remove_item(id)
         else:
             self.cart[id]["quantity"] += change_to_quantity
 
     def remove_item(self, id: str) -> None:
-        """
+      
         Removes an item from the user's cart.
 
         args:
             - id: The id of the item.
-        """
+            
         del self.cart[id]
 
+
     def update_total_cost(self) -> None:
-        """
+      
         Updates the total cost of the user's cart.
-        """
+        
         self.total_cost = calculate_total_cost(self.cart)
 
     def submit_cart(self) -> None:
-        """
+        
         Called when the order is submitted. Finalizes user session details.
 
         args:
@@ -110,9 +105,10 @@ class UserSession:
 
         returns:
             - None
-        """
+        
         self.update_total_cost()
         self.date = datetime.now()
+    """
 
 
 class Sessions:
@@ -150,9 +146,11 @@ class Sessions:
             - username: The username of the user.
 
         returns:
-            - The user session.
+            - The user session, or None if it is not found.
         """
-        return self.sessions[username]
+        if username in self.sessions: 
+          return self.sessions[username]
+        return None
 
     def remove_session(self, username: str) -> None:
         """
@@ -177,3 +175,4 @@ class Sessions:
             - A dictionary of user sessions.
         """
         return self.sessions
+    
