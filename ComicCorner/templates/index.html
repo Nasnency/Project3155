@@ -1,16 +1,30 @@
+{% block header %}
+
+<div class="row">
+    <div class="col-md-12" id="index_buttons">
+        <p>
+            {% if sessions.get_session(username).username %}
+              (DEBUG) current username: {{ sessions.get_session(username).username }}
+              <form action="/logout" method="post" id="logout_form">
+                  <button type="submit" class="btn btn-primary" id="logout_button">Logout</button>
+              </form>
+            {% else %}
+              (DEBUG) you aren't logged in!
+              <a href="/login" class="btn btn-primary" id="login_button">Login</a>
+              <a href="/register" class="btn btn-primary" id="register_button">Register</a>
+            {% endif %}
+          </p>
+    </div>
+</div>
+
+{% endblock %}
+
 {% extends "layout.html" %}
 
 {% block content %}
 
-<div class="row">
-    <div class="col-md-12" id="index_buttons">
-        <p>(DEBUG) current username: {{ username }}</p>
-        <a href="/login" class="btn btn-primary" id="login_button">Login</a>
-        <a href="/register" class="btn btn-primary" id="register_button">Register</a>
-    </div>
-</div>
 <div class="page">
-<img src="{{ latest.image_url }}" class="product_card-img" alt="Page 1">
+<img src="{{ latest.image_url }}" class="comic_img" alt="Page 1">
 </div>
 <div class="row" id="products_page">
     <div class="col-md-12">
