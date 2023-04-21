@@ -262,7 +262,7 @@ class Database:
     # ------------------ Users -------------------
     # --------------------------------------------
 
-    def insert_user(self, username: str, password_hash: str, email: str, first_name: str, last_name: str) -> None:
+    def insert_user(self, username: str, password_hash: str, email: str, first_name: str, last_name: str, password_salt: str, session_type: str) -> int:
         """
         Inserts a new user into the database.
 
@@ -274,10 +274,17 @@ class Database:
         returns:
             - None
         """
-        self.cursor.execute(
-            "INSERT INTO users (username, password_hash, email, first_name, last_name) VALUES (?, ?, ?, ?, ?)",
-            (username, password_hash, email, first_name, last_name))
-        self.connection.commit()
+        try:
+          self.cursor.execute(
+              "INSERT INTO users (username, password_hash, password_salt, email, first_name, last_name, session_type) VALUES (?, ?, ?, ?, ?, ?, ?)",
+              (username, password_hash, password_salt, email, first_name, last_name, session_type))
+          self.connection.commit()
+          return 0
+        except sqlite3.IntegrityError as e:
+          #username wasn't unique
+          return 1
+
+
 
     # ------ Getter methods ------
 

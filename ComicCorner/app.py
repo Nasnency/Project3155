@@ -14,7 +14,7 @@ db = Database('database/comicData.db')
 comics = db.get_comics()
 latest_comic = db.get_latest_comic()
 sessions = Sessions()
-sessions.add_new_session(username, db)
+#sessions.add_new_session(username, db)
 
 
 @app.route('/')
@@ -28,7 +28,7 @@ def index_page():
     returns:
         - None
     """
-    return render_template('index.html', username='<none, but TODO: check session var instead>', latest=latest_comic, sessions=sessions)
+    return render_template('index.html', username=username, latest=latest_comic, sessions=sessions)
 
 
 @app.route('/login')
@@ -43,6 +43,25 @@ def login_page():
         - None
     """
     return render_template('login.html')
+
+@app.route('/logout', methods=['POST'])
+def logout():
+    """
+    Returns the user to the home index and ends their session when the user is at the /logout endpoint with a POST request.
+
+    args:
+        - None
+
+    returns:
+        - None
+
+    modifies:
+        - sessions: terminates the session
+    """
+    global username
+    sessions.remove_session(username)
+    username = None
+    return render_template('index.html', username=username, latest=latest_comic, sessions=sessions)
 
 
 @app.route('/home', methods=['POST'])
@@ -60,11 +79,13 @@ def login():
         - sessions: adds a new session to the sessions object
 
     """
-    username = request.form['username']
-    password = request.form['password']
-    if login_pipeline(username, password, db):
-        sessions.add_new_session(username, db)
-        return render_template('index.html', username=username, latest=latest_comic, sessions=sessions)
+    uname = request.form['username']
+    pword = request.form['password']
+    if login_pipeline(uname, pword, db):
+        global username, sessions
+        username = uname
+        sessions.add_new_session(uname, db)
+        return render_template('index.html', username=uname, latest=latest_comic, sessions=sessions)
     else:
         return render_template('login.html')
 
@@ -105,8 +126,11 @@ def register():
     last_name = request.form['last_name']
     salt, key = hash_password(password)
     update_passwords(username, key, salt)
-    db.insert_user(username, key, email, first_name, last_name)
-    return render_template('index.html')
+    #forces them to be a reader
+    if db.insert_user(username, key, email, first_name, last_name, salt, 0) == 0:
+      return render_template('index.html', username=username, latest=latest_comic, sessions=sessions)
+    else:
+      return render_template('register.html', message="username taken already!")
 
 """
 #no longer used
