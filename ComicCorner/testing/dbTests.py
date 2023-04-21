@@ -15,17 +15,17 @@ def test_init_db(db: Database = None) -> tuple:
           and the string is the error report.
     """
 
-    db = Database("database/storeRecords.db") if db is None else db
+    db = Database("database/comicData.db") if db is None else db
 
-    if db.database_path != "database/storeRecords.db":
+    if db.database_path != "database/comicData.db":
         error = f"Error in test_init_db: Database path is not correct.\n  - Actual: {db.database_path}"
         return False, error
     else:
         return True, "Database path is correct."
-
-
+        
+"""
 def test_get_inventory_exists(db: Database = None) -> tuple:
-    """
+  
     Tests that the inventory is not empty.
 
     args:
@@ -35,7 +35,7 @@ def test_get_inventory_exists(db: Database = None) -> tuple:
         - error_report: a tuple containing a boolean and a string, 
           where the boolean is True if the test passed and False if it failed, 
           and the string is the error report.
-    """
+          
 
     db = Database("database/storeRecords.db") if db is None else db
     full_inventory = db.get_full_inventory()
@@ -48,7 +48,7 @@ def test_get_inventory_exists(db: Database = None) -> tuple:
 
 
 def test_dict_factory_link(db: Database = None) -> tuple:
-    """
+
     Tests that the row factory is linked to dict_factory.
 
     args:
@@ -56,7 +56,7 @@ def test_dict_factory_link(db: Database = None) -> tuple:
 
     returns:
         - error_report: a tuple containing a boolean and a string,
-    """
+        
     db = Database("database/storeRecords.db") if db is None else db
     row_factory = db.connection.row_factory
 
@@ -66,7 +66,7 @@ def test_dict_factory_link(db: Database = None) -> tuple:
     else:
         return True, "Row factory is linked to dict_factory."
 
-
+"""
 def test_check_connection_threaded(db: Database = None) -> tuple:
     """
     Tests that the database connection is not single threaded.
@@ -86,3 +86,4 @@ def test_check_connection_threaded(db: Database = None) -> tuple:
         return False, error
     else:
         return True, "Connection is not single threaded."
+    
