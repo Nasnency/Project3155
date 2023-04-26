@@ -2,7 +2,7 @@
 
 from authentication.authTools import login_pipeline, update_passwords, hash_password
 from database.db import Database
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for, abort
 from core.session import Sessions
 
 app = Flask(__name__)
@@ -14,21 +14,16 @@ db = Database('database/comicData.db')
 comics = db.get_comics()
 latest_comic = db.get_latest_comic()
 sessions = Sessions()
+session_current = None
 #sessions.add_new_session(username, db)
 
 
 @app.route('/')
 def index_page():
     """
-    Renders the index page when the user is at the `/` endpoint, passing along default flask variables.
-
-    args:
-        - None
-
-    returns:
-        - None
+    permanent redirect to home page
     """
-    return render_template('index.html', username=username, latest=latest_comic, sessions=sessions)
+    return redirect(url_for('home'))
 
 
 @app.route('/login')
@@ -58,11 +53,31 @@ def logout():
     modifies:
         - sessions: terminates the session
     """
-    global username
+    global username, session_current
     sessions.remove_session(username)
     username = None
-    return render_template('index.html', username=username, latest=latest_comic, sessions=sessions)
+    session_current = None
+    return redirect(url_for('home'))
 
+@app.route('/home')
+def home():
+  comictodisplay = latest_comic
+  comments=None
+  page_id=None
+  if request.args.get('page'):
+    print("got a page: " + request.args.get('page'))
+    resp=db.get_indexed_comic(request.args.get('page'))
+    if(resp['rowid']):
+      comictodisplay=resp
+      page_id=resp['rowid']
+    else:
+      abort(404)
+  else:
+    print("no page given, defaulting to latest")
+    page_id=latest_comic['rowid']
+      
+  comments=db.get_comments(page_id)
+  return render_template('index.html', comic=comictodisplay, latest=latest_comic, comments=comments, curr_session=session_current)
 
 @app.route('/home', methods=['POST'])
 def login():
@@ -82,10 +97,12 @@ def login():
     uname = request.form['username']
     pword = request.form['password']
     if login_pipeline(uname, pword, db):
-        global username, sessions
+        global username, sessions, session_current
         username = uname
         sessions.add_new_session(uname, db)
-        return render_template('index.html', username=uname, latest=latest_comic, sessions=sessions)
+        session_current = sessions.get_session(uname)
+        print("uname: " + session_current.username)
+        return redirect(url_for('home'))
     else:
         return render_template('login.html')
 
@@ -128,40 +145,36 @@ def register():
     update_passwords(username, key, salt)
     #forces them to be a reader
     if db.insert_user(username, key, email, first_name, last_name, salt, 0) == 0:
-      return render_template('index.html', username=username, latest=latest_comic, sessions=sessions)
+      return redirect(url_for('home'))
     else:
       return render_template('register.html', message="username taken already!")
 
-"""
-#no longer used
-@app.route('/checkout', methods=['POST'])
-def checkout():
-   
-    Renders the checkout page when the user is at the `/checkout` endpoint with a POST request.
+@app.route('/comment', methods=['POST'])
+def post_comment():
 
-    args:
-        - None
+  content = request.form['comment-input']
+  comic_id = request.form['page-id']
+  username = request.form['username']
 
-    returns:
-        - None
+  db.insert_comment(username, content, comic_id)
 
-    modifies:
-        - sessions: adds items to the user's cart
-    
-    order = {}
-    user_session = sessions.get_session(username)
-    for item in products:
-        print(f"item ID: {item['id']}")
-        if request.form[str(item['id'])] > '0':
-            count = request.form[str(item['id'])]
-            order[item['item_name']] = count
-            user_session.add_new_item(
-                item['id'], item['item_name'], item['price'], count)
+  return redirect(url_for('home') + "?page=" + request.form['page-id'])
 
-    user_session.submit_cart()
+@app.route('/DEBUG_throw_404')
+def throw_404():
+  abort(404)
 
-    return render_template('checkout.html', order=order, sessions=sessions, total_cost=user_session.total_cost)
-"""
+@app.route('/DEBUG_throw_500')
+def throw_500():
+  abort(500)
+
+@app.errorhandler(404)
+def page_not_found(e):
+  return render_template('404.html'), 404
+
+@app.errorhandler(500)
+def internal_error(e):
+  return render_template('500.html'), 500
 
 if __name__ == '__main__':
     app.run(debug=True, host=HOST, port=PORT)

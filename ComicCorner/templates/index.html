@@ -1,19 +1,23 @@
 {% block header %}
 
 <div class="row">
-    <div class="col-md-12" id="index_buttons">
+    <div class="col-md-12" id="index-buttons">
         <p>
-            {% if sessions.get_session(username).username %}
-              (DEBUG) current username: {{ sessions.get_session(username).username }}
-              <form action="/logout" method="post" id="logout_form">
-                  <button type="submit" class="btn btn-primary" id="logout_button">Logout</button>
+            {% if curr_session %}
+              (DEBUG) current username: {{ curr_session.username }}
+              <form action="/logout" method="post" id="logout-form">
+                  <button type="submit" class="btn btn-primary" id="logout-button">Logout</button>
               </form>
             {% else %}
               (DEBUG) you aren't logged in!
-              <a href="/login" class="btn btn-primary" id="login_button">Login</a>
-              <a href="/register" class="btn btn-primary" id="register_button">Register</a>
+              <a href="/login" class="btn btn-primary" id="login-button">Login</a>
+              <a href="/register" class="btn btn-primary" id="register-button">Register</a>
             {% endif %}
           </p>
+    </div>
+    <div>
+      <a href="/DEBUG_throw_404">DEBUG: throw 404</a>
+      <a href="/DEBUG_throw_500">DEBUG: throw 500</a>
     </div>
 </div>
 
@@ -24,35 +28,56 @@
 {% block content %}
 
 <div class="page">
-<img src="{{ latest.image_url }}" class="comic_img" alt="Page 1">
+  <img src="{{ comic.image_url }}" class="comic-img" alt="Page 1">
 </div>
-<div class="row" id="products_page">
+
+<div class="comic-nav-bar" id="comic-nav-bar">
+
+  <a class="comic-nav-button" id="comic-nav-button-first" href="/home?page=1">First</a>
+
+  {% if comic.rowid != 1 %}
+    <a class="comic-nav-button" id="comic-nav-button-prev" href="/home?page={{ comic.rowid - 1 }}">Previous</a>
+  {% else %}
+    <a class="comic-nav-button comic-nav-button-disabled" id="comic-nav-button-prev" href="#">Previous</a>
+  {% endif %}
+
+  {% if comic.rowid != latest.rowid %}
+    <a class="comic-nav-button" id="comic-nav-button-next" href="/home?page={{ comic.rowid + 1 }}">Next</a>
+  {% else %}
+    <a class="comic-nav-button comic-nav-button-disabled" id="comic-nav-button-next" href="#">Next</a>
+  {% endif %}
+
+  <a class="comic-nav-button" id="comic-nav-button-last" href="/home">Latest</a>
+</div>
+
+<div class="row" id="comment-section">
     <div class="col-md-12">
         <h3>Comments Section</h3>
-        <hr>
-        <!--
-        <div class="row">
-            <form action="/checkout" method="post">
-                <div class="form-group">
-                    <div class="row">
-                        {% for product in products %}
-                        <div class="col-md-4">
-                            <div id={{product.id}}>
-                                <div class="product_card" id="product_card">
-                                    <img src="{{ product.image_url }}" class="product_card-img" alt="...">
-                                    <div class="product_card-body">
-                                        <h5 class="product_card-title">{{ product.item_name }}</h5>
-                                        <p class="product_card-text">{{ product.info }}</p>
-                                        <p class="product_card-price">${{ product.price }}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {% endfor %}
-                    </div>
+          <div class="comment-box" id="comment-box">
+            {% if curr_session %}
+              <form id="comment-form" action="/comment" method="POST">
+                <p><label for="comment-input">Write a comment!</label></p>
+                <textarea class="comment-input" id="comment-input" name="comment-input" form="comment-form" rows="4" cols="40"></textarea>
+
+                <input type="hidden" name="page-id" value="{{ comic.rowid }}" />
+                <input type="hidden" name="username" value="{{ curr_session.username }}" />
+
+                <button id="comment-submit" class="comment-submit" type="submit">Post!</button>
+              </form>
+            {% else %}
+              <p>Login to leave a comment!</p>
+            {% endif %}
+          </div>
+          <div class="previous-comments" id="previous-comments">
+            {% if comments %}
+              {% for comment in comments %}
+                <div class="individual-comment">
+                  <p class="comment-username">{{ comment.username }}</p>
+                  <p class="comment-content">{{ comment.content }}</p>
                 </div>
-            </form>
-        </div>
-        -->
+              {% endfor %}
+            {% endif %}
+          </div>
+        <hr>
     </div>
     {% endblock %}
