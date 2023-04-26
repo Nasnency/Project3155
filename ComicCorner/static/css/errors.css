@@ -1,0 +1,42 @@
+#crying {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#kicking {
+    text-align: center;
+    padding: 0px;
+    margin: 0px 0px 15px 0px;
+    font-weight: bold;
+    font-size: 50px;
+    color:rgb(78, 73, 73);  
+}
+
+#screaming {
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+/* Link states */
+a:link {
+    text-decoration: none;
+    color: rgb(78, 73, 73);
+}
+
+a:visited {
+    text-decoration: none;
+    color: rgb(78, 73, 73);
+  }
+
+a:hover {
+    text-decoration: underline;
+    color: rgb(151, 72, 72);
+}
+
+a:active {
+    text-decoration: none;
+    color: rgb(148, 45, 45);
+}
