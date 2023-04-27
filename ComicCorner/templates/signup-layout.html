@@ -12,24 +12,6 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <p>
-                    {% if curr_session %}
-                        (DEBUG) current username: {{ curr_session.username }}
-                        <form action="/logout" method="post" id="logout-form">
-                            <button type="submit" class="btn btn-primary" id="logout-button">Logout</button>
-                        </form>
-                    {% else %}
-                        (DEBUG) you aren't logged in!
-                        <a href="/login" class="btn btn-primary" id="login-button">Login</a>
-                        <a href="/register" class="btn btn-primary" id="register-button">Register</a>
-                    {% endif %}
-                </p>
-                
-                <div>
-                    <a href="/DEBUG_throw_404">DEBUG: throw 404</a>
-                    <a href="/DEBUG_throw_500">DEBUG: throw 500</a>
-                </div>
-                
                 <h1 id="comic">Comic Corner</h1>
                 <h2 id="corner">Featuring Daughter of the Lilies!</h2>
                 <hr>

@@ -2,7 +2,7 @@ body {
     background-image: url('/static/images/login_bg.jpg');
 }
 
-#comic, #corner {
+#comic, #corner, #nav {
     text-align: right;
 }
 
