@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    
+<head>
+    <title>Artist's Control Page</title>
+    <link rel="stylesheet" href="/static/css/controls.css">
+</head>
+
+<body>
+    <h1>Latest Submission</h1>
+    <hr>
+    <div class="file_submission">
+        <form action="#">
+            <section class="file_drop_box">                
+                <input type="file" id="filename" name="filename">
+            </section>
+
+            <section class="file_details_box">
+                <label for="title">Title:</label><br>
+                <input type="text" id="title" name="title"><br>
+                <label for="desc">Description:</label><br>
+                <input type="text" id="desc" name="desc"><br>
+                <input type="submit" value="Submit">
+            </section>
+        </form> 
+    </div>
+    <br><br>
+    <hr>
+    <h1>Management</h1>
+    <hr>
+    <div class="file_management">
+        <div>
+            <input type="submit" value="Delete Page">
+            <input type="submit" value="Edit Page">
+            <input type="submit" value="Manage Comments">
+        </div>
+    </div>
+</body>
+
+</html>
