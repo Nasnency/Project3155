@@ -50,36 +50,6 @@ def username_exists(username: str, db: Database) -> bool:
             return True
     return False
 
-def update_passwords(username: str, key: str, salt: str):
-    """
-    Updates the passwords.txt file with a new username and password combination.
-    If the username is already in the file, the password will be updated.
-
-    args:
-        - username: A string of the username to store.
-        - key: A string of the hashed password to store.
-        - salt: A string of the salt to store.
-
-    returns:
-        - None
-
-    modifies:
-        - passwords.txt: Updates an existing or adds a new username and password combination to the file.
-    """
-    #TODO: switch this to database ver
-    with open("authentication/passwords.txt", "r") as file:
-        lines = file.readlines()
-    with open("authentication/passwords.txt", "w") as file:
-        found_flag = False
-        for line in lines:
-            if line.split(":")[0] == username:
-                found_flag = True
-                file.write(f"{username}:{salt}:{key}")
-            else:
-                file.write(line)
-        if not found_flag:
-            file.write(f"\n{username}:{salt}:{key}")
-
 
 def check_password(password: str, salt: str, key: str) -> bool:
     """
@@ -113,17 +83,6 @@ def login_pipeline(username: str, password: str, db: Database) -> bool:
     if not username_exists(username, db):
         return False
 
-    #removing this and switching it with database logic
-    """
-    with open("authentication/passwords.txt", "r") as file:
-        lines = file.readlines()
-    for line in lines:
-        if line.split(":")[0] == username:
-            salt = line.split(":")[1]
-            key = line.split(":")[2]
-            return check_password(password, salt, key)
-    return False
-    """
     accts = db.get_login_data()
     for acct in accts:
         if acct['username'] == username:

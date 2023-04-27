@@ -1,4 +1,4 @@
-from core.utils import dict_factory, calculate_cost
+from core.utils import dict_factory
 import datetime as dt
 import sqlite3
 
@@ -27,14 +27,17 @@ class Database:
     # ----------------- Comics -------------------
     # --------------------------------------------
 
+    #Gets every comic 
     def get_comics(self):
         self.cursor.execute("SELECT * FROM comic")
         return self.cursor.fetchall()
 
+    #Gets latest comic's page, url, ID
     def get_latest_comic(self):
         self.cursor.execute("SELECT page_name, image_url, MAX(rowid) as rowid FROM comic")
         return self.cursor.fetchone()
 
+    #gets indexed comic page based on the page's row ID
     def get_indexed_comic(self, index: str):
         self.cursor.execute("SELECT page_name, image_url, MAX(rowid) as rowid FROM comic WHERE rowid=" + index)
         return self.cursor.fetchone()
@@ -43,10 +46,12 @@ class Database:
     # ---------------- Comments ------------------
     # --------------------------------------------
 
+    #gets existing comments
     def get_comments(self, index: int):
       self.cursor.execute("SELECT username, content, comic_id, rowid as comment_id FROM comment WHERE comic_id=" + str(index))
       return self.cursor.fetchall()
 
+    #inserts a comment
     def insert_comment(self, username: str, content: str, comic_id: int):
       self.cursor.execute("INSERT INTO comment (username, content, comic_id) VALUES (?, ?, ?)", (username, content, comic_id))
       self.connection.commit()
@@ -67,6 +72,9 @@ class Database:
             - username: The username of the user to insert.
             - password_hash: The password_hash of the user to insert.
             - email: The email of the user to insert.
+            - first_name: The user's first name.
+            - last_name: The user's last name.
+            - session_type: 0 for reader, 1 for artist.
 
         returns:
             - None

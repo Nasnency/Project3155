@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from authentication.authTools import login_pipeline, update_passwords, hash_password
+from authentication.authTools import login_pipeline, hash_password
 from database.db import Database
 from flask import Flask, render_template, request, redirect, url_for, abort
 from core.session import Sessions
@@ -21,36 +21,62 @@ session_current = None
 @app.route('/')
 def index_page():
     """
-    permanent redirect to home page
+    This is a redirect to the home page. A number of other routes also end here.
+
+    args:
+      - None
+
+    returns:
+      - None
     """
     return redirect(url_for('home'))
 
 @app.route('/about')
 def about_page():
     """
-    Redirects to about page
+    Renders the about page when the user is at the '/about' endpoint.
+
+    args:
+      - None
+    returns:
+      - None
     """
     return render_template('about.html', curr_session=session_current)
 
 @app.route('/cast')
 def cast_page():
     """
-    Redirects to cast page
-    """
+    Renders the cast page when the user is at the '/cast' endpoint.
+
+    args:
+      - None
+    returns:
+      - None
+     """
     return render_template('cast.html', curr_session=session_current)
 
 @app.route('/archive')
 def archive_page():
     """
-    Redirects to archive page
-    """
+    Renders the archive page when the user is at the '/archive' endpoint.
+
+    args:
+      - None
+    returns:
+      - None
+     """
     return render_template('archive.html', curr_session=session_current)
 
 @app.route('/control')
 def control_page():
     """
-    Redirects to control page
-    """
+    Renders the control page when the user is at the '/control' endpoint.
+
+    args:
+      - None
+    returns:
+      - None
+     """
     return render_template('control.html')
 
 @app.route('/login')
@@ -80,6 +106,8 @@ def logout():
     modifies:
         - sessions: terminates the session
     """
+
+    #retrieves these globals to modify them, else they become local vars
     global username, session_current
     sessions.remove_session(username)
     username = None
@@ -88,21 +116,36 @@ def logout():
 
 @app.route('/home')
 def home():
+
+  """
+  Renders the home page when the user is at the '/home/' endpoint.
+  This also serves as the page that is used to render all of the comic pages
+
+  args:
+    - None, but can accept a value for page to render
+
+  returns:
+    - None
+  """
   comic_to_display = latest_comic
   comments=None
   page_id=None
+  #check to see if a page number was submitted with the request
   if request.args.get('page'):
-    print("got a page: " + request.args.get('page'))
+    #attempt to see if there's a valid page
     resp=db.get_indexed_comic(request.args.get('page'))
     if(resp['rowid']):
+      #loads up a valid page
       comic_to_display=resp
       page_id=resp['rowid']
     else:
+      #given apge was invalid
       abort(404)
   else:
     print("no page given, defaulting to latest")
     page_id=latest_comic['rowid']
       
+  #load comments (if they exist)
   comments=db.get_comments(page_id)
   return render_template('index.html', comic=comic_to_display, latest=latest_comic, comments=comments, curr_session=session_current)
 
@@ -119,6 +162,8 @@ def login():
 
     modifies:
         - sessions: adds a new session to the sessions object
+        - username: sets username to login of user
+        - session_current: sets to the session of whoever just logged in
 
     """
     uname = request.form['username']
@@ -128,7 +173,6 @@ def login():
         username = uname
         sessions.add_new_session(uname, db)
         session_current = sessions.get_session(uname)
-        print("uname: " + session_current.username)
         return redirect(url_for('home'))
     else:
         return render_template('login.html')
@@ -160,7 +204,6 @@ def register():
         - None
 
     modifies:
-        - passwords.txt: adds a new username and password combination to the file
         - database/storeRecords.db: adds a new user to the database
     """
     username = request.form['username']
@@ -169,7 +212,6 @@ def register():
     first_name = request.form['first_name']
     last_name = request.form['last_name']
     salt, key = hash_password(password)
-    update_passwords(username, key, salt)
     #forces them to be a reader
     if db.insert_user(username, key, email, first_name, last_name, salt, 0) == 0:
       return redirect(url_for('home'))
@@ -187,14 +229,17 @@ def post_comment():
 
   return redirect(url_for('home') + "?page=" + request.form['page-id'])
 
+#DEBUG error 404
 @app.route('/DEBUG_throw_404')
 def throw_404():
   abort(404)
 
+#DEBUG error 500
 @app.route('/DEBUG_throw_500')
 def throw_500():
   abort(500)
 
+#Error handlers - If any of these errors displays without their templates, something is VERY wrong
 @app.errorhandler(404)
 def page_not_found(e):
   return render_template('404.html'), 404
