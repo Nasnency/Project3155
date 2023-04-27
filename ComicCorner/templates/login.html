@@ -3,26 +3,32 @@
 {% block content %}
 <link rel="stylesheet" href="/static/css/login.css">
 
+<!--div space between content and layout header-->
 <div class="space" id="start"></div>
 
 <div class="login">
+    <!--tagline-->
     <h3 id="tag_title">Welcome back, Adventurer!</h3>
     <div class="form" id="login_class">
         <form action="/home" method="post" id="login_form">
             <div class="form-user" id="user">
+                <!--username input box-->
                 <label for="username">Username</label>
                 <input type="text" class="form-control" id="username" name="username" placeholder="Enter username" required>
             </div>
             <div class="form-pass" id="pass">
+                <!--password input box-->
                 <label for=" password">Password</label>
                 <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" required>
             </div>
             <br>
+            <!--login button-->
             <button type="submit" class="btn btn-primary" id="login_button">Login</button>
         </form>
     </div>
 </div>
 
+<!--div space between content and footer-->
 <div class="space" id="end"></div>
 
 {% endblock %}

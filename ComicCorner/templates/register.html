@@ -3,33 +3,41 @@
 {% block content %}
 <div class="row" id="info_row">
     <div class="col-md-6">
+        <!--title-->
         <h3>Welcome!</h3>
+        <!--if statement that will display a warning message if the username is already taken-->
         {% if message %}
           <p>{{ message }}</p>
         {% endif %}
         <form action="/register" method="POST">
+            <!--username input box-->
             <div class="form-group" id="info_form_group">
                 <label for="username">Username:</label>
                 <input type="text" name="username" id="username" class="form-control" required>
             </div>
+            <!--password input box-->
             <div class="form-group" id="info_form_group">
                 <label for="password">Password:</label>
                 <input type="password" name="password" id="password" class="form-control" required>
             </div>
+            <!--email input box-->
             <div class="form-group" id="info_form_group">
                 <label for="email">Email</label>
                 <input type="email" name="email" id="email" class="form-control" required>
             </div>
+            <!--First name input box-->
             <div class="form-group" id="info_form_group">
                 <label for="first_name">First Name</label>
                 <input type="first_name" name="first_name" id="first_name" class="form-control" required>
             </div>
+            <!--Last name input box-->
             <div class="form-group" id="info_form_group">
                 <label for="last_name">Last Name</label>
                 <input type="last_name" name="last_name" id="last_name" class="form-control" required>
             </div>
             <br>
             <br>
+            <!--registration button-->
             <button type="submit" class="btn btn-primary" id="register_button">Register</button>
         </form>
     </div>

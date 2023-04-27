@@ -1,9 +1,11 @@
+/*image*/
 #crying {
     display: block;
     margin-left: auto;
     margin-right: auto;
 }
 
+/*error title*/
 #kicking {
     text-align: center;
     padding: 0px;
@@ -13,6 +15,7 @@
     color:rgb(78, 73, 73);  
 }
 
+/*link*/
 #screaming {
     display: flex;
     justify-content: center;
@@ -20,7 +23,7 @@
     font-size: 30px;
 }
 
-/* Link states */
+/*Link states*/
 a:link {
     text-decoration: none;
     color: rgb(78, 73, 73);

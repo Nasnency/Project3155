@@ -3,59 +3,69 @@
 {% block content %}
 
 <div class="page">
+  <!--this will display the latest comic page-->
   <img src="{{ comic.image_url }}" class="comic-img" alt="Page 1">
 </div>
 
+<!--navigation bar underneath a comic page-->
 <div class="comic-nav-bar" id="comic-nav-bar">
-
+  <!--will take user to first page-->
   <a class="comic-nav-button" id="comic-nav-button-first" href="/home?page=1">First</a>
 
+  <!--will take user to a previous page, unless there is none- IF there is none, it will stay in the same page-->
   {% if comic.rowid != 1 %}
     <a class="comic-nav-button" id="comic-nav-button-prev" href="/home?page={{ comic.rowid - 1 }}">Previous</a>
   {% else %}
     <a class="comic-nav-button comic-nav-button-disabled" id="comic-nav-button-prev" href="#">Previous</a>
   {% endif %}
-
+  <!--will take user to the next page, unless there is none- IF there is none, it will stay in the same page-->
   {% if comic.rowid != latest.rowid %}
     <a class="comic-nav-button" id="comic-nav-button-next" href="/home?page={{ comic.rowid + 1 }}">Next</a>
   {% else %}
     <a class="comic-nav-button comic-nav-button-disabled" id="comic-nav-button-next" href="#">Next</a>
   {% endif %}
 
+  <!--will take user to the latest page-->
   <a class="comic-nav-button" id="comic-nav-button-last" href="/home">Latest</a>
 </div>
 
 <div class="row" id="comment-section">
     <div class="col-md-12">
-        <hr>
+        <hr> <!--line break-->
         <h3>Comments Section</h3>
-        <hr>
+        <hr> <!--line break-->
           <div class="comment-box" id="comment-box">
+            <!--If there is an existing current session, user is allowed to write a comment, else it displays a message-->
             {% if curr_session %}
               <form id="comment-form" action="/comment" method="POST">
                 <p><label for="comment-input">Write a comment!</label></p>
                 <textarea class="comment-input" id="comment-input" name="comment-input" form="comment-form" rows="4" cols="40"></textarea>
-
+                
+                <!--These inputs are hidden but they pass along the page number and the username-->
                 <input type="hidden" name="page-id" value="{{ comic.rowid }}" />
                 <input type="hidden" name="username" value="{{ curr_session.username }}" />
 
+                <!--submit button-->
                 <button id="comment-submit" class="comment-submit" type="submit">Post!</button>
               </form>
             {% else %}
               <p>Login to leave a comment!</p>
             {% endif %}
           </div>
+
           <div class="previous-comments" id="previous-comments">
+            <!--this displays all previous comments, if they exist-->
             {% if comments %}
+              <!--for each comment in the list "comments" (take a look at app.py)-->
               {% for comment in comments %}
                 <div class="individual-comment">
                   <h4 class="comment-username">{{ comment.username }}</h4>
-                  <hr>
+                  <hr> <!--line break-->
                   <p class="comment-content">{{ comment.content }}</p>
                 </div>
               {% endfor %}
             {% endif %}
           </div>
-        <hr>
+        <hr> <!--line break-->
     </div>
     {% endblock %}

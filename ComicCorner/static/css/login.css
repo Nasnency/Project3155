@@ -1,29 +1,36 @@
+/*background image*/
 body {
     background-image: url('/static/images/login_bg.jpg');
 }
 
+/*titles and menu*/
 #comic, #corner, #nav {
     text-align: right;
 }
 
+/*space above and below content*/
 .space {
     margin: 35px;
 }
 
+/*tagline*/
 #tag_title {
     text-align: right;
 }
 
+/*username and password divs*/
 #user, #pass {
     margin: 0px 0px 0px 900px;
 }
 
+/*username and password input boxes*/
 #username, #password {
     border: 2px solid rgb(255, 0, 85);
     border-radius: 4px;
     width: 300px;
 }
 
+/*button*/
 #login_button {
     margin: 0px 0px 0px 900px;
 }
