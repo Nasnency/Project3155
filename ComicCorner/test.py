@@ -1,7 +1,7 @@
 from testing.authTests import test_hash_password_generates_salt, test_salt_length, test_hash_password_returns_given_salt, test_hash_password_uses_given_salt
 from core.utils import generate_unique_id
 from datetime import datetime
-from testing.dbTests import test_init_db, test_check_connection_threaded
+from testing.dbTests import test_init_db, test_check_connection_threaded, test_insert_comment
 from testing.coreTests import test_init_sessions, test_add_new_session, test_get_session
 import os
 
@@ -13,7 +13,8 @@ AUTH_FUNCS = [test_hash_password_generates_salt,
               test_hash_password_uses_given_salt]
 
 DB_FUNCS = [test_init_db,
-            test_check_connection_threaded]
+            test_check_connection_threaded,
+            test_insert_comment]
 
 CORE_FUNCS = [test_init_sessions,
               test_add_new_session,

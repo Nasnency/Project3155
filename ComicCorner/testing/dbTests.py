@@ -78,7 +78,7 @@ def test_check_connection_threaded(db: Database = None) -> tuple:
         - error_report: a tuple containing a boolean and a string,
     """
 
-    db = Database("database/storeRecords.db") if db is None else db
+    db = Database("database/comicData.db") if db is None else db
     connection_is_threaded = db.connection.isolation_level is None
 
     if connection_is_threaded:
@@ -86,4 +86,27 @@ def test_check_connection_threaded(db: Database = None) -> tuple:
         return False, error
     else:
         return True, "Connection is not single threaded."
+
     
+def test_insert_comment(db: Database = None) -> tuple: 
+  """
+  Tests that a comment can be left in the database
+
+  args:
+    - db: an sqlite3 database object (optional)
+
+  returns:
+    - error_report: a tuple containing a boolean and a string
+  """
+  db = Database("database/comicData.db") if db is None else db
+  comment_content = "TEST DATABASE COMMENT"
+  comment_username = "TEST USERNAME"
+  comment_page = 1
+
+  db.insert_comment(comment_username, comment_content, comment_page)
+  comments = db.get_comments(comment_page)
+
+  for comment in comments:
+    if comment['content'] == comment_content and comment['username'] == comment_username and comment['comic_id'] == comment_page:
+      return True, "Comment inserted and retrieved successfully."
+  return False, "Comment was not successfully inserted, or could not be retrieved."
