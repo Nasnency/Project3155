@@ -25,6 +25,33 @@ def index_page():
     """
     return redirect(url_for('home'))
 
+@app.route('/about')
+def about_page():
+    """
+    Redirects to about page
+    """
+    return render_template('about.html', curr_session=session_current)
+
+@app.route('/cast')
+def cast_page():
+    """
+    Redirects to cast page
+    """
+    return render_template('cast.html', curr_session=session_current)
+
+@app.route('/archive')
+def archive_page():
+    """
+    Redirects to archive page
+    """
+    return render_template('archive.html', curr_session=session_current)
+
+@app.route('/control')
+def control_page():
+    """
+    Redirects to control page
+    """
+    return render_template('control.html')
 
 @app.route('/login')
 def login_page():
@@ -61,14 +88,14 @@ def logout():
 
 @app.route('/home')
 def home():
-  comictodisplay = latest_comic
+  comic_to_display = latest_comic
   comments=None
   page_id=None
   if request.args.get('page'):
     print("got a page: " + request.args.get('page'))
     resp=db.get_indexed_comic(request.args.get('page'))
     if(resp['rowid']):
-      comictodisplay=resp
+      comic_to_display=resp
       page_id=resp['rowid']
     else:
       abort(404)
@@ -77,7 +104,7 @@ def home():
     page_id=latest_comic['rowid']
       
   comments=db.get_comments(page_id)
-  return render_template('index.html', comic=comictodisplay, latest=latest_comic, comments=comments, curr_session=session_current)
+  return render_template('index.html', comic=comic_to_display, latest=latest_comic, comments=comments, curr_session=session_current)
 
 @app.route('/home', methods=['POST'])
 def login():
