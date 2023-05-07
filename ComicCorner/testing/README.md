@@ -21,8 +21,8 @@ This script contains the unittests for the `authentication` module. The tests fo
 
 ## dbTests.py File
 
-This script contains the unittests for the `database` module. The tests here are less thorough than the `authTests.py` file, but they cover a wider range of features. The database initialization, `dict_factory` conversion link, connection isolation level, and existence of the `inventory` table are all tested from this file. Students should consider adding more tests to check the existence of other tables and functionality of various query functions in the `db.py` file.
+This script contains the unittests for the `database` module. The tests here are less thorough than the `authTests.py` file, but they cover a wider range of features. The database initialization, ability to leave a comment, and other features are all tested in this file.
 
 ## coreTests.py File
 
-This script contains the unittests for the `core` module. Similar to the `authTests.py` file, the tests here are limited in scope. Functions from the `session.py` are tested, specfically ones that handle session management. More thorough testing for specific user sessions, multiple users, and any functions from the `utils.py` file would be a beneficial addition from students.
+This script contains the unittests for the `core` module. Similar to the `authTests.py` file, the tests here are limited in scope. Functions from the `session.py` are tested, specfically ones that handle session management. 
